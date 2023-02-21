@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.example.customcalendar.kalendarClasses.ui.theme.CustomCalendarTheme
+import com.example.customcalendar.customCalenderClasses.ui.theme.CustomCalendarTheme
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)

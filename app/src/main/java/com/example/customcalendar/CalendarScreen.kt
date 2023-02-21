@@ -7,28 +7,26 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.customcalendar.kalendarClasses.model.KalendarEvent
-import com.example.customcalendar.kalendarClasses.model.KalendarType
-import com.example.customcalendar.kalendarClasses.ui.color.KalendarColors
-import com.example.customcalendar.kalendarClasses.ui.color.KalendarThemeColor
-import com.example.customcalendar.kalendarClasses.ui.component.day.config.KalendarDayColors
-import com.example.customcalendar.kalendarClasses.ui.component.day.config.KalendarDayDefaultColors
-import com.example.customcalendar.kalendarClasses.ui.component.header.config.KalendarHeaderConfig
-import com.example.customcalendar.kalendarClasses.ui.firey.KalendarFirey
+import com.example.customcalendar.customCalenderClasses.model.CustomCalenderEvent
+import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderColors
+import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderThemeColor
+import com.example.customcalendar.customCalenderClasses.ui.component.day.config.KalendarDayColors
+import com.example.customcalendar.customCalenderClasses.ui.component.day.config.KalendarDayDefaultColors
+import com.example.customcalendar.customCalenderClasses.ui.component.header.config.KalendarHeaderConfig
+import com.example.customcalendar.customCalenderClasses.ui.firey.CustomCalenderImpl
 
 import kotlinx.datetime.LocalDate
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun KalendarDemo() {
+fun CustomCalenderLib() {
 
     Column(
         Modifier
@@ -36,8 +34,7 @@ fun KalendarDemo() {
             .background(Color.LightGray)
     ) {
 
-        Kalendar(
-            kalendarType = KalendarType.Firey,
+        CustomCalender(
             modifier = Modifier
                 .border(BorderStroke(2.dp, Color.White)),
             onCurrentDayClick = { calender, listOfEvents ->
@@ -50,32 +47,25 @@ fun KalendarDemo() {
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun Kalendar(
+fun CustomCalender(
     modifier: Modifier = Modifier,
-    kalendarType: KalendarType = KalendarType.Oceanic(true),
-    kalendarEvents: List<KalendarEvent> = emptyList(),
-    kalendarThemeColors: List<KalendarThemeColor> = KalendarColors.defaultColors(),
-    onCurrentDayClick: (com.example.customcalendar.kalendarClasses.model.KalendarDay, List<KalendarEvent>) -> Unit = { _, _ -> },
+    customCalenderEvents: List<CustomCalenderEvent> = emptyList(),
+    customCalenderThemeColors: List<CustomCalenderThemeColor> = CustomCalenderColors.defaultColors(),
+    onCurrentDayClick: (com.example.customcalendar.customCalenderClasses.model.CustomCalenderDay, List<CustomCalenderEvent>) -> Unit = { _, _ -> },
     kalendarDayColors: KalendarDayColors = KalendarDayDefaultColors.defaultColors(),
     kalendarHeaderConfig: KalendarHeaderConfig? = null,
     takeMeToDate: LocalDate? = null,
 ) {
-    if (kalendarThemeColors.isEmpty() || kalendarThemeColors.count() < 12) throw Exception("KalendarThemeColor cannot be null or less than 12, If you want to use same color accors months pass kalendarThemeColor = KalendarThemeColor(values)")
+    if (customCalenderThemeColors.isEmpty() || customCalenderThemeColors.count() < 12) throw Exception("KalendarThemeColor cannot be null or less than 12, If you want to use same color accors months pass kalendarThemeColor = KalendarThemeColor(values)")
 
-    when (kalendarType) {
-        KalendarType.Firey -> {
-            KalendarFirey(
-                modifier = modifier.wrapContentHeight(),
-                kalendarEvents = kalendarEvents,
-                onCurrentDayClick = onCurrentDayClick,
-                kalendarDayColors = kalendarDayColors,
-                kalendarThemeColors = kalendarThemeColors,
-                takeMeToDate = takeMeToDate,
-                kalendarHeaderConfig = kalendarHeaderConfig
-            )
-        }
-        else -> {
-        }
-    }
+    CustomCalenderImpl(
+        modifier = modifier.wrapContentHeight(),
+        customCalenderEvents = customCalenderEvents,
+        onCurrentDayClick = onCurrentDayClick,
+        kalendarDayColors = kalendarDayColors,
+        customCalenderThemeColors = customCalenderThemeColors,
+        takeMeToDate = takeMeToDate,
+        kalendarHeaderConfig = kalendarHeaderConfig
+    )
 }
 
