@@ -9,19 +9,20 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.customcalendar.color.KalendarColors
-import com.example.customcalendar.color.KalendarThemeColor
-import com.example.customcalendar.component.day.config.KalendarDayColors
-import com.example.customcalendar.component.day.config.KalendarDayDefaultColors
-import com.example.customcalendar.component.header.config.KalendarHeaderConfig
-import com.example.customcalendar.model.KalendarDay
-import com.example.customcalendar.model.KalendarEvent
-import com.example.customcalendar.model.KalendarType
-import com.example.customcalendar.ui.firey.KalendarFirey
+import com.example.customcalendar.kalendarClasses.model.KalendarEvent
+import com.example.customcalendar.kalendarClasses.model.KalendarType
+import com.example.customcalendar.kalendarClasses.ui.color.KalendarColors
+import com.example.customcalendar.kalendarClasses.ui.color.KalendarThemeColor
+import com.example.customcalendar.kalendarClasses.ui.component.day.config.KalendarDayColors
+import com.example.customcalendar.kalendarClasses.ui.component.day.config.KalendarDayDefaultColors
+import com.example.customcalendar.kalendarClasses.ui.component.header.config.KalendarHeaderConfig
+import com.example.customcalendar.kalendarClasses.ui.firey.KalendarFirey
+
 import kotlinx.datetime.LocalDate
 
 
@@ -31,7 +32,7 @@ fun KalendarDemo() {
 
     Column(
         Modifier
-            .fillMaxSize()
+            .wrapContentSize()
             .background(Color.LightGray)
     ) {
 
@@ -39,7 +40,6 @@ fun KalendarDemo() {
             kalendarType = KalendarType.Firey,
             modifier = Modifier
                 .border(BorderStroke(2.dp, Color.White)),
-//            takeMeToDate = LocalDate(2022, 10, 25),
             onCurrentDayClick = { calender, listOfEvents ->
                 val cal = calender
                 Log.e("ddjndn","Selected dated "+cal.localDate.toString())
@@ -55,7 +55,7 @@ fun Kalendar(
     kalendarType: KalendarType = KalendarType.Oceanic(true),
     kalendarEvents: List<KalendarEvent> = emptyList(),
     kalendarThemeColors: List<KalendarThemeColor> = KalendarColors.defaultColors(),
-    onCurrentDayClick: (KalendarDay, List<KalendarEvent>) -> Unit = { _, _ -> },
+    onCurrentDayClick: (com.example.customcalendar.kalendarClasses.model.KalendarDay, List<KalendarEvent>) -> Unit = { _, _ -> },
     kalendarDayColors: KalendarDayColors = KalendarDayDefaultColors.defaultColors(),
     kalendarHeaderConfig: KalendarHeaderConfig? = null,
     takeMeToDate: LocalDate? = null,
