@@ -9,15 +9,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.KalendarTextSize
+import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextSize
 
 @Composable
-fun KalendarNormalText(
+fun CustomCalenderNormalText(
     text: String,
     modifier: Modifier = Modifier,
     fontWeight: FontWeight,
     textColor: Color,
-    textSize: TextUnit = KalendarTextSize.Normal.size
+    textSize: TextUnit = CustomCalenderTextSize.Normal.size
 
 ) {
     Text(
@@ -32,8 +32,8 @@ fun KalendarNormalText(
 
 @Preview
 @Composable
-private fun KalendarNormalTextPreview() {
-    KalendarNormalText(
+private fun CustomCalenderNormalTextPreview() {
+    CustomCalenderNormalText(
         text = "Hye Himanshu",
         modifier = Modifier,
         fontWeight = FontWeight.SemiBold,

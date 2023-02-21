@@ -20,15 +20,15 @@ import androidx.compose.ui.unit.dp
 import com.example.customcalendar.customCalenderClasses.model.CustomCalenderEvent
 import com.example.customcalendar.customCalenderClasses.model.toCustomerCalenderDay
 import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderThemeColor
-import com.example.customcalendar.customCalenderClasses.ui.component.day.KalendarDay
-import com.example.customcalendar.customCalenderClasses.ui.component.day.config.KalendarDayColors
-import com.example.customcalendar.customCalenderClasses.ui.component.header.KalendarHeader
-import com.example.customcalendar.customCalenderClasses.ui.component.header.config.KalendarHeaderConfig
-import com.example.customcalendar.customCalenderClasses.ui.component.text.KalendarNormalText
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.KalendarTextColor
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.KalendarTextConfig
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.KalendarTextSize
-import com.himanshoe.kalendar.utils.Constant
+import com.example.customcalendar.customCalenderClasses.ui.component.day.CustomCalenderDay
+import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayColors
+import com.example.customcalendar.customCalenderClasses.ui.component.header.CustomCalenderHeader
+import com.example.customcalendar.customCalenderClasses.ui.component.header.config.CustomCalenderHeaderConfig
+import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderNormalText
+import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextColor
+import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextConfig
+import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextSize
+import com.example.customcalendar.customCalenderClasses.utils.Constant
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
@@ -44,8 +44,8 @@ val WeekDays = listOf("M", "T", "W", "T", "F", "S", "S")
 fun CustomCalenderImpl(
     modifier: Modifier = Modifier,
     takeMeToDate: LocalDate?,
-    kalendarDayColors: KalendarDayColors,
-    kalendarHeaderConfig: KalendarHeaderConfig? = null,
+    customCalenderDayColors: CustomCalenderDayColors,
+    customCalenderHeaderConfig: CustomCalenderHeaderConfig? = null,
     customCalenderThemeColors: List<CustomCalenderThemeColor>,
     customCalenderEvents: List<CustomCalenderEvent> = emptyList(),
     onCurrentDayClick: (com.example.customcalendar.customCalenderClasses.model.CustomCalenderDay, List<CustomCalenderEvent>) -> Unit = { _, _ -> },
@@ -65,11 +65,11 @@ fun CustomCalenderImpl(
         if (currentMonth.value.toString().length == 1) "0" + currentMonth.value.toString() else currentMonth.value.toString()
     val startDayOfMonth = "$currentYear-$monthValue-01".toLocalDate()
     val firstDayOfMonth = startDayOfMonth.dayOfWeek
-    val selectedKalendarDate = remember { mutableStateOf(currentDay) }
-    val newKalenderHeaderConfig = KalendarHeaderConfig(
-        kalendarTextConfig = KalendarTextConfig(
-            kalendarTextSize = KalendarTextSize.SubTitle,
-            kalendarTextColor = KalendarTextColor(
+    val selectedCustomCalenderDate = remember { mutableStateOf(currentDay) }
+    val newKalenderHeaderConfig = CustomCalenderHeaderConfig(
+        customCalenderTextConfig = CustomCalenderTextConfig(
+            customCalenderTextSize = CustomCalenderTextSize.SubTitle,
+            customCalenderTextColor = CustomCalenderTextColor(
                 customCalenderThemeColors[currentMonth.value.minus(1)].headerTextColor,
             )
         )
@@ -84,7 +84,7 @@ fun CustomCalenderImpl(
             .wrapContentHeight()
             .fillMaxWidth()
     ) {
-        KalendarHeader(
+        CustomCalenderHeader(
             modifier = Modifier,
             month = displayedMonth.value,
             onPreviousClick = {
@@ -100,34 +100,34 @@ fun CustomCalenderImpl(
                 displayedMonth.value = displayedMonth.value.plus(1)
             },
             year = displayedYear.value,
-            kalendarHeaderConfig = kalendarHeaderConfig ?: newKalenderHeaderConfig
+            customCalenderHeaderConfig = customCalenderHeaderConfig ?: newKalenderHeaderConfig
         )
         LazyVerticalGrid(
             modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
             columns = GridCells.Fixed(7),
             content = {
                 items(WeekDays) {
-                    KalendarNormalText(
+                    CustomCalenderNormalText(
                         text = it,
                         fontWeight = FontWeight.Normal,
-                        textColor = kalendarDayColors.textColor,
+                        textColor = customCalenderDayColors.textColor,
                     )
                 }
                 items((getInitialDayOfMonth(firstDayOfMonth)..daysInMonth).toList()) {
                     if (it > 0) {
                         val day = getGeneratedDay(it, currentMonth, currentYear)
                         val isCurrentDay = day == currentDay
-                        KalendarDay(
+                        CustomCalenderDay(
                             customCalenderDay = day.toCustomerCalenderDay(),
                             modifier = Modifier.padding(9.dp),
                             customCalenderEvents = customCalenderEvents,
                             isCurrentDay = isCurrentDay,
-                            onCurrentDayClick = { kalendarDay, events ->
-                                selectedKalendarDate.value = kalendarDay.localDate
-                                onCurrentDayClick(kalendarDay, events)
+                            onCurrentDayClick = { customCalenderDay, events ->
+                                selectedCustomCalenderDate.value = customCalenderDay.localDate
+                                onCurrentDayClick(customCalenderDay, events)
                             },
-                            selectedKalendarDay = selectedKalendarDate.value,
-                            kalendarDayColors = kalendarDayColors,
+                            selectedCustomCalenderDay = selectedCustomCalenderDate.value,
+                            customCalenderDayColors = customCalenderDayColors,
                             dotColor = customCalenderThemeColors[currentMonth.value.minus(1)].headerTextColor,
                             dayBackgroundColor = customCalenderThemeColors[currentMonth.value.minus(1)].dayBackgroundColor,
                         )
@@ -145,9 +145,9 @@ fun CustomCalenderImpl(
     customCalenderEvents: List<CustomCalenderEvent> = emptyList(),
     onCurrentDayClick: (com.example.customcalendar.customCalenderClasses.model.CustomCalenderDay, List<CustomCalenderEvent>) -> Unit = { _, _ -> },
     takeMeToDate: LocalDate?,
-    kalendarDayColors: KalendarDayColors,
+    customCalenderDayColors: CustomCalenderDayColors,
     customCalenderThemeColor: CustomCalenderThemeColor,
-    kalendarHeaderConfig: KalendarHeaderConfig? = null
+    customCalenderHeaderConfig: CustomCalenderHeaderConfig? = null
 ) {
     val currentDay = takeMeToDate ?: Clock.System.todayIn(TimeZone.currentSystemDefault())
     val displayedMonth = remember {
@@ -164,13 +164,13 @@ fun CustomCalenderImpl(
         if (currentMonth.value.toString().length == 1) "0" + currentMonth.value.toString() else currentMonth.value.toString()
     val startDayOfMonth = "$currentYear-$monthValue-01".toLocalDate()
     val firstDayOfMonth = startDayOfMonth.dayOfWeek
-    val selectedKalendarDate = remember { mutableStateOf(currentDay) }
-    val newKalenderHeaderConfig = KalendarHeaderConfig(
-        KalendarTextConfig(
-            kalendarTextColor = KalendarTextColor(
+    val selectedCustomCalenderDate = remember { mutableStateOf(currentDay) }
+    val newKalenderHeaderConfig = CustomCalenderHeaderConfig(
+        CustomCalenderTextConfig(
+            customCalenderTextColor = CustomCalenderTextColor(
                 customCalenderThemeColor.headerTextColor
             ),
-            kalendarTextSize = KalendarTextSize.SubTitle
+            customCalenderTextSize = CustomCalenderTextSize.SubTitle
         )
     )
 
@@ -182,7 +182,7 @@ fun CustomCalenderImpl(
             .wrapContentHeight()
             .fillMaxWidth()
     ) {
-        KalendarHeader(
+        CustomCalenderHeader(
             modifier = Modifier,
             month = displayedMonth.value,
             onPreviousClick = {
@@ -198,7 +198,7 @@ fun CustomCalenderImpl(
                 displayedMonth.value = displayedMonth.value.plus(1)
             },
             year = displayedYear.value,
-            kalendarHeaderConfig = kalendarHeaderConfig ?: newKalenderHeaderConfig
+            customCalenderHeaderConfig = customCalenderHeaderConfig ?: newKalenderHeaderConfig
         )
 
         LazyVerticalGrid(
@@ -206,27 +206,27 @@ fun CustomCalenderImpl(
             columns = GridCells.Fixed(7),
             content = {
                 items(WeekDays) {
-                    KalendarNormalText(
+                    CustomCalenderNormalText(
                         text = it,
                         fontWeight = FontWeight.Normal,
-                        textColor = kalendarDayColors.textColor,
+                        textColor = customCalenderDayColors.textColor,
                     )
                 }
                 items((getInitialDayOfMonth(firstDayOfMonth)..daysInMonth).toList()) {
                     if (it > 0) {
                         val day = getGeneratedDay(it, currentMonth, currentYear)
                         val isCurrentDay = day == currentDay
-                        KalendarDay(
+                        CustomCalenderDay(
                             customCalenderDay = day.toCustomerCalenderDay(),
                             modifier = Modifier,
                             customCalenderEvents = customCalenderEvents,
                             isCurrentDay = isCurrentDay,
-                            onCurrentDayClick = { kalendarDay, events ->
-                                selectedKalendarDate.value = kalendarDay.localDate
-                                onCurrentDayClick(kalendarDay, events)
+                            onCurrentDayClick = { customCalenderDay, events ->
+                                selectedCustomCalenderDate.value = customCalenderDay.localDate
+                                onCurrentDayClick(customCalenderDay, events)
                             },
-                            selectedKalendarDay = selectedKalendarDate.value,
-                            kalendarDayColors = kalendarDayColors,
+                            selectedCustomCalenderDay = selectedCustomCalenderDate.value,
+                            customCalenderDayColors = customCalenderDayColors,
                             dotColor = customCalenderThemeColor.headerTextColor,
                             dayBackgroundColor = customCalenderThemeColor.dayBackgroundColor,
                         )

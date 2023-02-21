@@ -2,12 +2,12 @@ package com.example.customcalendar.customCalenderClasses.ui.component.day.config
 
 import androidx.compose.ui.graphics.Color
 
-data class KalendarDayColors(
+data class CustomCalenderDayColors(
     val textColor: Color, // Default Text Color
     val selectedTextColor: Color, // Selected Text Color
 )
 
-object KalendarDayDefaultColors {
+object CustomCalenderDayDefaultColors {
 
-    fun defaultColors() = KalendarDayColors(Color.White, Color.White)
+    fun defaultColors() = CustomCalenderDayColors(Color.White, Color.White)
 }

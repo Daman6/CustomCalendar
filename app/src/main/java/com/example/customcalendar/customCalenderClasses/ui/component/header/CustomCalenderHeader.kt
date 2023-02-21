@@ -17,9 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.customcalendar.customCalenderClasses.ui.component.button.KalendarIconButton
-import com.example.customcalendar.customCalenderClasses.ui.component.header.config.KalendarHeaderConfig
-import com.example.customcalendar.customCalenderClasses.ui.component.text.KalendarSubTitle
+import com.example.customcalendar.customCalenderClasses.ui.component.button.CustomCalenderIconButton
+import com.example.customcalendar.customCalenderClasses.ui.component.header.config.CustomCalenderHeaderConfig
+import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderSubTitle
 import java.time.Month
 import java.time.format.TextStyle
 import java.util.*
@@ -27,14 +27,14 @@ import java.util.*
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun KalendarHeader(
+fun CustomCalenderHeader(
     month: Month,
     year: Int,
     modifier: Modifier = Modifier,
     onPreviousClick: () -> Unit = {},
     onNextClick: () -> Unit = {},
     arrowShown: Boolean = true,
-    kalendarHeaderConfig: KalendarHeaderConfig
+    customCalenderHeaderConfig: CustomCalenderHeaderConfig
 ) {
     val isNext = remember { mutableStateOf(true) }
     Row(
@@ -53,7 +53,7 @@ fun KalendarHeader(
                     .align(Alignment.CenterVertically),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                KalendarIconButton(
+                CustomCalenderIconButton(
                     modifier = Modifier.wrapContentSize(),
                     imageVector = Icons.Default.KeyboardArrowLeft,
                     contentDescription = "Previous Week",
@@ -77,14 +77,14 @@ fun KalendarHeader(
                     }
                 )
                 {
-                    KalendarSubTitle(
+                    CustomCalenderSubTitle(
                         text = it,
                         modifier = Modifier,
-                        kalendarTextConfig = kalendarHeaderConfig.kalendarTextConfig
+                        customCalenderTextConfig = customCalenderHeaderConfig.customCalenderTextConfig
                     )
                 }
 
-                KalendarIconButton(
+                CustomCalenderIconButton(
                     modifier = Modifier.wrapContentSize(),
                     imageVector = Icons.Default.KeyboardArrowRight,
                     contentDescription = "Next Month",

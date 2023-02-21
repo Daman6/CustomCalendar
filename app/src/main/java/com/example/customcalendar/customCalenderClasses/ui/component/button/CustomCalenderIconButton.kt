@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
-fun KalendarIconButton(
+fun CustomCalenderIconButton(
     imageVector: ImageVector,
     modifier: Modifier = Modifier,
     contentDescription: String? = null,

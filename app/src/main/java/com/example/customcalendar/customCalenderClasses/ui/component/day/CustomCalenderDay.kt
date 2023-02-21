@@ -28,19 +28,19 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.customcalendar.customCalenderClasses.model.CustomCalenderEvent
-import com.example.customcalendar.customCalenderClasses.ui.component.day.config.KalendarDayColors
-import com.example.customcalendar.customCalenderClasses.ui.component.day.config.KalendarDayState
-import com.example.customcalendar.customCalenderClasses.ui.component.text.KalendarNormalText
+import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayColors
+import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayState
+import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderNormalText
+import com.example.customcalendar.customCalenderClasses.utils.Constant
 
-import com.himanshoe.kalendar.utils.Constant
 import kotlinx.datetime.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun KalendarDay(
+fun CustomCalenderDay(
     customCalenderDay: com.example.customcalendar.customCalenderClasses.model.CustomCalenderDay,
-    selectedKalendarDay: kotlinx.datetime.LocalDate,
-    kalendarDayColors: KalendarDayColors,
+    selectedCustomCalenderDay: kotlinx.datetime.LocalDate,
+    customCalenderDayColors: CustomCalenderDayColors,
     dotColor: Color,
     dayBackgroundColor: Color,
     modifier: Modifier = Modifier,
@@ -51,10 +51,10 @@ fun KalendarDay(
     onCurrentDayClick: (com.example.customcalendar.customCalenderClasses.model.CustomCalenderDay, List<CustomCalenderEvent>) -> Unit = { _, _ -> },
 
     ) {
-    val kalendarDayState = getKalendarDayState(selectedKalendarDay, customCalenderDay.localDate)
-    val bgColor = getBackgroundColor(kalendarDayState, dayBackgroundColor)
-    val textColor = getTextColor(kalendarDayState, kalendarDayColors)
-    val weight = getTextWeight(kalendarDayState)
+    val customCalenderDayState = getCustomCalenderDayState(selectedCustomCalenderDay, customCalenderDay.localDate)
+    val bgColor = getBackgroundColor(customCalenderDayState, dayBackgroundColor)
+    val textColor = getTextColor(customCalenderDayState, customCalenderDayColors)
+    val weight = getTextWeight(customCalenderDayState)
     val border = getBorder(isCurrentDay)
 
     Column(
@@ -70,7 +70,7 @@ fun KalendarDay(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        KalendarNormalText(
+        CustomCalenderNormalText(
             text = customCalenderDay.localDate.dayOfMonth.toString(),
             modifier = Modifier,
             fontWeight = weight,
@@ -83,11 +83,11 @@ fun KalendarDay(
                 .align(Alignment.CenterHorizontally),
             horizontalArrangement = Arrangement.Center
         ) {
-            val kalendarEventForDay = customCalenderEvents.filter { it.date == customCalenderDay.localDate }
-            if (kalendarEventForDay.isNotEmpty()) {
-                val dayEvents = if (kalendarEventForDay.count() > 3) kalendarEventForDay.take(3) else kalendarEventForDay
+            val customCalenderEventForDay = customCalenderEvents.filter { it.date == customCalenderDay.localDate }
+            if (customCalenderEventForDay.isNotEmpty()) {
+                val dayEvents = if (customCalenderEventForDay.count() > 3) customCalenderEventForDay.take(3) else customCalenderEventForDay
                 dayEvents.forEachIndexed { index, _ ->
-                    KalendarDots(
+                    CustomCalenderDots(
                         modifier = Modifier, index = index, size = size, color = dotColor
                     )
                 }
@@ -97,7 +97,7 @@ fun KalendarDay(
 }
 
 @Composable
-fun KalendarDots(
+fun CustomCalenderDots(
     modifier: Modifier = Modifier,
     index: Int,
     size: Dp,
@@ -115,10 +115,10 @@ fun KalendarDots(
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-private fun getKalendarDayState(selectedDate: LocalDate, currentDay: LocalDate) =
+private fun getCustomCalenderDayState(selectedDate: LocalDate, currentDay: LocalDate) =
     when (selectedDate) {
-        currentDay -> KalendarDayState.KalendarDaySelected
-        else -> KalendarDayState.KalendarDayDefault
+        currentDay -> CustomCalenderDayState.CustomCalenderDaySelected
+        else -> CustomCalenderDayState.CustomCalenderDayDefault
     }
 
 private fun getBorder(isCurrentDay: Boolean) = BorderStroke(
@@ -126,33 +126,27 @@ private fun getBorder(isCurrentDay: Boolean) = BorderStroke(
     color = if (isCurrentDay) Color.White else Color.Transparent,
 )
 
-private fun getTextWeight(kalendarDayState: KalendarDayState) =
-    if (kalendarDayState is KalendarDayState.KalendarDaySelected) {
+private fun getTextWeight(customCalenderDayState: CustomCalenderDayState) =
+    if (customCalenderDayState is CustomCalenderDayState.CustomCalenderDaySelected) {
         FontWeight.Bold
     } else {
         FontWeight.SemiBold
     }
 
 private fun getBackgroundColor(
-    kalendarDayState: KalendarDayState,
+    customCalenderDayState: CustomCalenderDayState,
     dayBackgroundColor: Color
-) = if (kalendarDayState is KalendarDayState.KalendarDaySelected) {
+) = if (customCalenderDayState is CustomCalenderDayState.CustomCalenderDaySelected) {
     Constant.selectedDotColor
 } else {
     Color.Transparent
 }
 
 private fun getTextColor(
-    kalendarDayState: KalendarDayState,
-    kalendarDayColors: KalendarDayColors,
-): Color = if (kalendarDayState is KalendarDayState.KalendarDaySelected) {
-    kalendarDayColors.selectedTextColor
+    customCalenderDayState: CustomCalenderDayState,
+    customCalenderDayColors: CustomCalenderDayColors,
+): Color = if (customCalenderDayState is CustomCalenderDayState.CustomCalenderDaySelected) {
+    customCalenderDayColors.selectedTextColor
 } else {
-    kalendarDayColors.textColor
+    customCalenderDayColors.textColor
 }
-
-//@Preview
-//@Composable
-//private fun KalendarDayPreview() {
-//    KalendarDay()
-//}

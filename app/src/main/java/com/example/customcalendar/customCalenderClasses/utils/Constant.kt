@@ -1,4 +1,4 @@
-package com.himanshoe.kalendar.utils
+package com.example.customcalendar.customCalenderClasses.utils
 
 import androidx.compose.ui.graphics.Color
 

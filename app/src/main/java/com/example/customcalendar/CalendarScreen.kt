@@ -16,9 +16,9 @@ import androidx.compose.ui.unit.dp
 import com.example.customcalendar.customCalenderClasses.model.CustomCalenderEvent
 import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderColors
 import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderThemeColor
-import com.example.customcalendar.customCalenderClasses.ui.component.day.config.KalendarDayColors
-import com.example.customcalendar.customCalenderClasses.ui.component.day.config.KalendarDayDefaultColors
-import com.example.customcalendar.customCalenderClasses.ui.component.header.config.KalendarHeaderConfig
+import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayColors
+import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayDefaultColors
+import com.example.customcalendar.customCalenderClasses.ui.component.header.config.CustomCalenderHeaderConfig
 import com.example.customcalendar.customCalenderClasses.ui.firey.CustomCalenderImpl
 
 import kotlinx.datetime.LocalDate
@@ -52,20 +52,20 @@ fun CustomCalender(
     customCalenderEvents: List<CustomCalenderEvent> = emptyList(),
     customCalenderThemeColors: List<CustomCalenderThemeColor> = CustomCalenderColors.defaultColors(),
     onCurrentDayClick: (com.example.customcalendar.customCalenderClasses.model.CustomCalenderDay, List<CustomCalenderEvent>) -> Unit = { _, _ -> },
-    kalendarDayColors: KalendarDayColors = KalendarDayDefaultColors.defaultColors(),
-    kalendarHeaderConfig: KalendarHeaderConfig? = null,
+    customCalenderDayColors: CustomCalenderDayColors = CustomCalenderDayDefaultColors.defaultColors(),
+    customCalenderHeaderConfig: CustomCalenderHeaderConfig? = null,
     takeMeToDate: LocalDate? = null,
 ) {
-    if (customCalenderThemeColors.isEmpty() || customCalenderThemeColors.count() < 12) throw Exception("KalendarThemeColor cannot be null or less than 12, If you want to use same color accors months pass kalendarThemeColor = KalendarThemeColor(values)")
+    if (customCalenderThemeColors.isEmpty() || customCalenderThemeColors.count() < 12) throw Exception("CustomCalenderThemeColor cannot be null or less than 12, If you want to use same color accors months pass CustomCalenderThemeColor = CustomCalenderThemeColor(values)")
 
     CustomCalenderImpl(
         modifier = modifier.wrapContentHeight(),
         customCalenderEvents = customCalenderEvents,
         onCurrentDayClick = onCurrentDayClick,
-        kalendarDayColors = kalendarDayColors,
+        customCalenderDayColors = customCalenderDayColors,
         customCalenderThemeColors = customCalenderThemeColors,
         takeMeToDate = takeMeToDate,
-        kalendarHeaderConfig = kalendarHeaderConfig
+        customCalenderHeaderConfig = customCalenderHeaderConfig
     )
 }
 

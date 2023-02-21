@@ -7,22 +7,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.KalendarTextConfig
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.KalendarTextDefaults
+import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextConfig
+import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextDefaults
 
 
 @Composable
-fun KalendarSubTitle(
+fun CustomCalenderSubTitle(
     text: String,
     modifier: Modifier = Modifier,
     textAlign: TextAlign = TextAlign.Start,
     fontWeight: FontWeight = FontWeight.SemiBold,
-    kalendarTextConfig: KalendarTextConfig = KalendarTextDefaults.kalendarSubTitleTextConfig()
+    customCalenderTextConfig: CustomCalenderTextConfig = CustomCalenderTextDefaults.customCalenderSubTitleTextConfig()
 ) {
     Text(
         modifier = modifier,
         color = Color.White,
-        fontSize = kalendarTextConfig.kalendarTextSize.size,
+        fontSize = customCalenderTextConfig.customCalenderTextSize.size,
         text = text,
         fontWeight = fontWeight,
         textAlign = textAlign
@@ -31,6 +31,6 @@ fun KalendarSubTitle(
 
 @Preview
 @Composable
-private fun KalendarSubTitlePreview() {
-    KalendarSubTitle(modifier = Modifier, text = "Hye Himanshu")
+private fun CustomCalenderSubTitlePreview() {
+    CustomCalenderSubTitle(modifier = Modifier, text = "Hye Himanshu")
 }
