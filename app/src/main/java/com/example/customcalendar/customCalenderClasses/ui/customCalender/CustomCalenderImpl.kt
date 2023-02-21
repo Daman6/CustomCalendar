@@ -1,5 +1,5 @@
 
-package com.example.customcalendar.customCalenderClasses.ui.firey
+package com.example.customcalendar.customCalenderClasses.ui.customCalender
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -23,11 +23,11 @@ import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderT
 import com.example.customcalendar.customCalenderClasses.ui.component.day.CustomCalenderDay
 import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayColors
 import com.example.customcalendar.customCalenderClasses.ui.component.header.CustomCalenderHeader
-import com.example.customcalendar.customCalenderClasses.ui.component.header.config.CustomCalenderHeaderConfig
+import com.example.customcalendar.customCalenderClasses.ui.component.header.CustomCalenderHeaderConfig
 import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderNormalText
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextColor
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextConfig
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextSize
+import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderTextColor
+import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderTextConfig
+import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderTextSize
 import com.example.customcalendar.customCalenderClasses.utils.Constant
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DayOfWeek

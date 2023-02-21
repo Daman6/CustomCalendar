@@ -1,4 +1,4 @@
-package com.example.customcalendar.customCalenderClasses.ui.component.text.config
+package com.example.customcalendar.customCalenderClasses.ui.component.text
 
 
 data class CustomCalenderTextConfig(

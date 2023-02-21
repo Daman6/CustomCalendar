@@ -7,8 +7,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextConfig
-import com.example.customcalendar.customCalenderClasses.ui.component.text.config.CustomCalenderTextDefaults
 
 
 @Composable

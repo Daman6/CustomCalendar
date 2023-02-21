@@ -18,8 +18,8 @@ import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderC
 import com.example.customcalendar.customCalenderClasses.ui.color.CustomCalenderThemeColor
 import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayColors
 import com.example.customcalendar.customCalenderClasses.ui.component.day.config.CustomCalenderDayDefaultColors
-import com.example.customcalendar.customCalenderClasses.ui.component.header.config.CustomCalenderHeaderConfig
-import com.example.customcalendar.customCalenderClasses.ui.firey.CustomCalenderImpl
+import com.example.customcalendar.customCalenderClasses.ui.component.header.CustomCalenderHeaderConfig
+import com.example.customcalendar.customCalenderClasses.ui.customCalender.CustomCalenderImpl
 
 import kotlinx.datetime.LocalDate
 

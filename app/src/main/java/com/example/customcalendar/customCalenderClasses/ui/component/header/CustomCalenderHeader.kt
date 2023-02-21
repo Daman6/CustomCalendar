@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.customcalendar.customCalenderClasses.ui.component.button.CustomCalenderIconButton
-import com.example.customcalendar.customCalenderClasses.ui.component.header.config.CustomCalenderHeaderConfig
 import com.example.customcalendar.customCalenderClasses.ui.component.text.CustomCalenderSubTitle
 import java.time.Month
 import java.time.format.TextStyle
