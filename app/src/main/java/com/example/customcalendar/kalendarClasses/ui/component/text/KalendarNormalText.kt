@@ -30,6 +30,25 @@ fun KalendarNormalText(
     )
 }
 
+@Composable
+fun KalendarNormalTextDisabled(
+    text: String,
+    modifier: Modifier = Modifier,
+    fontWeight: FontWeight,
+    textColor: Color,
+    textSize: TextUnit = KalendarTextSize.Normal.size
+
+) {
+    Text(
+        modifier = modifier,
+        color = Color.Green,
+        fontSize = textSize,
+        text = text,
+        fontWeight = fontWeight,
+        textAlign = TextAlign.Center
+    )
+}
+
 @Preview
 @Composable
 private fun KalendarNormalTextPreview() {

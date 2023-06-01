@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.example.customcalendar.kalendarClasses.ui.component.text.config.KalendarTextConfig
 import com.example.customcalendar.kalendarClasses.ui.component.text.config.KalendarTextDefaults
 
@@ -22,7 +23,8 @@ fun KalendarSubTitle(
     Text(
         modifier = modifier,
         color = Color.White,
-        fontSize = kalendarTextConfig.kalendarTextSize.size,
+//        fontSize = kalendarTextConfig.kalendarTextSize.size,
+        fontSize = 17.sp,
         text = text,
         fontWeight = fontWeight,
         textAlign = textAlign

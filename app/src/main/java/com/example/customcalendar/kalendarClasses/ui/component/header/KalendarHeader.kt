@@ -1,10 +1,12 @@
 package com.example.customcalendar.kalendarClasses.ui.component.header
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -16,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.customcalendar.kalendarClasses.ui.component.button.KalendarIconButton
 import com.example.customcalendar.kalendarClasses.ui.component.header.config.KalendarHeaderConfig
@@ -40,9 +43,9 @@ fun KalendarHeader(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .border(BorderStroke(2.dp, Color.White))
+            .border(BorderStroke(1.dp, Color.LightGray))
             .wrapContentHeight()
-            .padding(8.dp),
+            .padding(horizontal = 10.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         //intial start of the project
@@ -80,6 +83,7 @@ fun KalendarHeader(
                     KalendarSubTitle(
                         text = it,
                         modifier = Modifier,
+                        fontWeight = FontWeight.Light,
                         kalendarTextConfig = kalendarHeaderConfig.kalendarTextConfig
                     )
                 }
