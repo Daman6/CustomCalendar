@@ -35,12 +35,18 @@ fun CustomCalenderLib() {
     ) {
 
         CustomCalender(
-            modifier = Modifier
-                .border(BorderStroke(2.dp, Color.White)),
             onCurrentDayClick = { calender, listOfEvents ->
                 val cal = calender
                 Log.e("ddjndn","Selected dated "+cal.localDate.toString())
-            }
+            },
+            customCalenderEvents = listOf(
+                CustomCalenderEvent(LocalDate(2023, 6, 10), "Birthday"),
+                CustomCalenderEvent(LocalDate(2023, 6, 18), "Birthday"),
+                CustomCalenderEvent(LocalDate(2023, 6, 15), "Birthday"),
+                CustomCalenderEvent(LocalDate(2023, 5, 25), "Birthday"),
+                CustomCalenderEvent(LocalDate(2023, 5, 28), "Party"),
+                CustomCalenderEvent(LocalDate(2023, 5, 29), "Club"),
+        )
         )
     }
 }
@@ -48,7 +54,7 @@ fun CustomCalenderLib() {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CustomCalender(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier ,
     customCalenderEvents: List<CustomCalenderEvent> = emptyList(),
     customCalenderThemeColors: List<CustomCalenderThemeColor> = CustomCalenderColors.defaultColors(),
     onCurrentDayClick: (com.example.customcalendar.customCalenderClasses.model.CustomCalenderDay, List<CustomCalenderEvent>) -> Unit = { _, _ -> },
