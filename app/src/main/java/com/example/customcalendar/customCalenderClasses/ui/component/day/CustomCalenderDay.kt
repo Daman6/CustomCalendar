@@ -7,6 +7,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -29,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -76,7 +79,13 @@ fun CustomCalenderDay(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(bounded = true)
-            ) { onCurrentDayClick(customCalenderDay, customCalenderEvents) },
+            ) {
+                if (customCalenderEventForDay.isNotEmpty()) {
+                    onCurrentDayClick(customCalenderDay, customCalenderEvents)
+                } else{
+
+                }
+              },
         horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center
     ) {
         Box(
@@ -85,7 +94,8 @@ fun CustomCalenderDay(
                 .border(1.dp, bgColor, CircleShape)
                 .padding(4.dp)
                 .clip(CircleShape)
-                .background(bgColor)
+                .background(bgColor),
+
         ) {
             if (customCalenderEventForDay.isNotEmpty()) {
                 CustomCalenderNormalText(
@@ -95,7 +105,8 @@ fun CustomCalenderDay(
                     textColor = textColor,
                     textSize = textSize,
                 )
-            } else {
+            }
+            else {
                 CustomCalenderTextDisabled(
                     text = customCalenderDay.localDate.dayOfMonth.toString(),
                     modifier = Modifier.align(Alignment.Center),
